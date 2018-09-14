@@ -2,11 +2,13 @@
 
 A map of screenings of Jason Schmitt's documentary "Paywall: The Business of Scholarship"
 
+**[Browse the map online at https://nuest.gitlab.io/paywallthemovie-map/](https://nuest.gitlab.io/paywallthemovie-map/)**
+
 ## Add your screening
 
 Choose one of the following, preferred method first:
 
-1. Clone the repo and add your screening to `paywallthemovie-screenings.csv`, then open a merge request
+1. Clone the repo and add your screening to the file `data/paywallthemovie-screenings.csv`, then open a merge request
 1. [Create an issue](https://gitlab.com/nuest/paywallthemovie-map/issues)
 1. Send Daniel an email
 
