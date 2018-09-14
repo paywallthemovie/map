@@ -35,7 +35,7 @@ Map has a custom markers using the Open Access logo with the movie CI color.
 Use a local webserver to resolve the paths:
 
 ```
-docker run --rm -v $(pwd):/usr/share/nginx/html -p 80:80 nginx
+docker run --rm -v $(pwd)/public:/usr/share/nginx/html -p 80:80 nginx
 ```
 
 Then go to http://localhost/
