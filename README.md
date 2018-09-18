@@ -41,3 +41,11 @@ docker run --rm -v $(pwd)/public:/usr/share/nginx/html -p 80:80 nginx
 ```
 
 Then go to http://localhost/
+
+## Licenses
+
+Screening data for the movie Paywall: The Business of Scholarship is made available under the Open Data Commons Attribution License: http://opendatacommons.org/licenses/by/1.0
+
+Code published under Apache License, Version 2.0. Copyright 2018 Daniel Nüst.
+
+Text and documentation published under a Creative Commons Attribution 4.0 International (CC BY 4.0) license: https://creativecommons.org/licenses/by/4.0/
