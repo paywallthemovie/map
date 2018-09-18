@@ -1,10 +1,12 @@
+# Geolocating Paywall movie screenings, Copyright 2018 Daniel Nüst
+
 library("here")
 library("readr")
 
-# load data
+cat("Loading data\n")
 dataFile <- here("data/paywallthemovie-screenings.csv")
 screenings <- read_csv(dataFile)
-head(screenings)
+summary(screenings)
 
 # http://www.storybench.org/geocode-csv-addresses-r/
 #library("ggmap")
@@ -18,7 +20,7 @@ head(screenings)
 #nominatim::osm_geocode(query = screenings$place[[1]], email = "daniel.nuest@uni-muenster.de")
 # need API key..
 
-
+cat("Geocoding addresses\n")
 # https://github.com/ropensci/opencage
 #opencage_key <- Sys.getenv("OPENCAGE_KEY")
 library("opencage")
@@ -35,21 +37,31 @@ screenings$x <- coords$x
 screenings$y <- coords$y
 head(screenings)
 
+cat("Converting to geocoordinates\n")
 library("sf")
 screenings_geo <- st_as_sf(screenings, coords = c("x", "y"), crs = 3395)
 screenings_latlon <- st_transform(screenings_geo, crs = 4326)
 
-# devtools::install_github("r-spatial/mapview", ref = "develop") because of https://github.com/r-spatial/mapview/issues/177
-library("mapview")
-mapview::mapView(screenings_latlon)
-
-# save to GeoJSON:
+cat("Save data as GeoJSON (removing the old file beforehand)\n")
+unlink("public/screenings.json")
 sf::st_write(screenings_latlon, "public/screenings.json", driver = "GeoJSON")
-# adds ""crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } }," which GeoJSON linter complains about
 
+cat("Save stats to file\n")
+library("jsonlite")
+write(toJSON(list(screenings = nrow(screenings), lastUpdate = Sys.time()),
+             auto_unbox = TRUE,
+             pretty = TRUE),
+      "public/statistics.json")
 
+cat("Done\n")
 
-# create interactive map with R
+#########################
+# interactive maps with R
+
+# devtools::install_github("r-spatial/mapview", ref = "develop") because of https://github.com/r-spatial/mapview/issues/177
+#library("mapview")
+#mapview::mapView(screenings_latlon)
+
 # <- makeIcon(
 #  iconUrl = "oaicon.png",
 #  iconWidth = 25, iconHeight = 32,

@@ -24,9 +24,21 @@ Manual changes:
 1. split up information in columns `date,time,description,place,raw`
 1. remove duplicate lines ("City, ..")
 1. commit state
-1. geocode information in column `place` into column `location` with the R script `scripts/geolocate.R`
-1. save to GeoJSON file `public/screenings.json`
- 
+1. geocode information in column `place` into column `location` save to GeoJSON file `public/screenings.json` with the R script `scripts/geolocate.R`
+
+## Update map data
+
+The OpenCage API is used for geocoding the text addresses.
+Add an OpenCage API key to a file `.Renviron` in the base directory of the project, following the instructions of the R package [`opencage`](https://github.com/ropensci/opencage).
+
+Required R packages: `here`, `readr`, `opencage`, `sf`
+
+Run the following command:
+
+```
+Rscript scripts/geolocate.R
+```
+
 ## Map
 
 Full page [Leaflet](https://leafletjs.com/) map with CSS and JS from CDNs.
@@ -38,6 +50,12 @@ Use a local webserver to resolve the paths:
 
 ```
 docker run --rm -v $(pwd)/public:/usr/share/nginx/html -p 80:80 nginx
+```
+
+or on Windows:
+
+```
+MSYS_NO_PATHCONV=1 docker run --rm -v `pwd`/public:/usr/share/nginx/html -p 80:80 nginx
 ```
 
 Then go to http://localhost/
