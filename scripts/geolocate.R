@@ -4,7 +4,7 @@ library("here")
 library("readr")
 
 cat("Loading data\n")
-dataFile <- here("data/paywallthemovie-screenings.csv")
+dataFile <- here::here("data/paywallthemovie-screenings.csv")
 screenings <- read_csv(dataFile)
 summary(screenings)
 
@@ -28,14 +28,27 @@ library("opencage")
 #opencage_forward(placename = screenings$place[[1]], limit = 1)$results[1,]
 coords <- lapply(screenings$place, function(place) {
   result <- opencage_forward(placename = place, limit = 1)$results[1,]
-  tibble::data_frame(x = as.numeric(levels(result$annotations.Mercator.x)),
+  if(is.null(result)) {
+    cat("Error geocoding place: ", place, "\n")
+    stop()
+  }
+  #browser()
+  found <- toString(result$formatted)
+  tibble::data_frame(place = place,
+                     found = found,
+                     x = as.numeric(levels(result$annotations.Mercator.x)),
                      y = as.numeric(levels(result$annotations.Mercator.y)))
+  #cat("Geocoded: ", place, " >>> ", toString(result$formatted), "\n")
 })
-
 coords <- do.call(rbind, coords)
+
+# find out about non-geocoded entries:
+#dplyr::anti_join(screenings, coords, by = "place")
+
 screenings$x <- coords$x
 screenings$y <- coords$y
 head(screenings)
+dim(screenings)
 
 cat("Converting to geocoordinates\n")
 library("sf")

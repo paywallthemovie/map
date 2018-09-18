@@ -28,7 +28,7 @@ Manual changes:
 
 ## Update map data
 
-The OpenCage API is used for geocoding the text addresses.
+The [OpenCage](https://opencagedata.com) API is used for forward geocoding the text place names.
 Add an OpenCage API key to a file `.Renviron` in the base directory of the project, following the instructions of the R package [`opencage`](https://github.com/ropensci/opencage).
 
 Required R packages: `here`, `readr`, `opencage`, `sf`
