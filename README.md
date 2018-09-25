@@ -28,6 +28,7 @@ Manual changes:
 
 ## Update map data
 
+The main data file is a CSV file in `data`, but the map is based on a structured document with geolocation coordinates for each screening.
 The [OpenCage](https://opencagedata.com) API is used for forward geocoding the text place names.
 Add an OpenCage API key to a file `.Renviron` in the base directory of the project, following the instructions of the R package [`opencage`](https://github.com/ropensci/opencage).
 
