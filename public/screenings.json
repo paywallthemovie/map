@@ -330,6 +330,9 @@
 { "type": "Feature", "properties": { "date": null, "time": null, "description": "Mount Royal University Library", "place": "Mount Royal University Library, Calgary, Alberta", "raw": null }, "geometry": { "type": "Point", "coordinates": [ -114.085290001770147, 51.050110000923603 ] } },
 { "type": "Feature", "properties": { "date": null, "time": null, "description": "University of California Davis", "place": "University of California Davis, Davis, CA, USA", "raw": null }, "geometry": { "type": "Point", "coordinates": [ -121.751392675423091, 38.522475151467255 ] } },
 { "type": "Feature", "properties": { "date": null, "time": null, "description": "CODATA\/RDA Research Data Science summer school", "place": "Kigali, Rwanda", "raw": null }, "geometry": { "type": "Point", "coordinates": [ 30.129675100909321, -1.885959697296371 ] } },
-{ "type": "Feature", "properties": { "date": null, "time": null, "description": "The University of Akureyri", "place": "The University of Akureyri, Iceland", "raw": null }, "geometry": { "type": "Point", "coordinates": [ -18.087800003857595, 65.683529998221445 ] } }
+{ "type": "Feature", "properties": { "date": null, "time": null, "description": "The University of Akureyri", "place": "The University of Akureyri, Iceland", "raw": null }, "geometry": { "type": "Point", "coordinates": [ -18.087800003857595, 65.683529998221445 ] } },
+{ "type": "Feature", "properties": { "date": null, "time": null, "description": "Tilburg University", "place": "Tilburg University, Tilburg, Netherlands", "raw": null }, "geometry": { "type": "Point", "coordinates": [ 5.043598465992312, 51.563060850235786 ] } },
+{ "type": "Feature", "properties": { "date": null, "time": null, "description": "Know-Center", "place": "Know-Center, Graz, Austria", "raw": null }, "geometry": { "type": "Point", "coordinates": [ 15.463336301067704, 47.059183397420796 ] } },
+{ "type": "Feature", "properties": { "date": null, "time": null, "description": "Bowdoin College", "place": "Bowdoin College, Brunswick, ME, USA", "raw": null }, "geometry": { "type": "Point", "coordinates": [ -69.961774245472824, 43.907503499135188 ] } }
 ]
 }
