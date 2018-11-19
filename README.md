@@ -2,7 +2,7 @@
 
 A map of screenings of Jason Schmitt's documentary "Paywall: The Business of Scholarship"
 
-**[Browse the map online at https://nuest.gitlab.io/paywallthemovie-map/](https://nuest.gitlab.io/paywallthemovie-map/)**
+**[Browse the map online at https://paywallthemovie.gitlab.io/map](https://paywallthemovie.gitlab.io/map)**
 
 ## Add your screening
 
