@@ -334,6 +334,9 @@
 { "type": "Feature", "properties": { "date": null, "time": null, "description": "Tilburg University", "place": "Tilburg University, Tilburg, Netherlands", "raw": null }, "geometry": { "type": "Point", "coordinates": [ 5.043598465992312, 51.563060850235786 ] } },
 { "type": "Feature", "properties": { "date": null, "time": null, "description": "Know-Center", "place": "Know-Center, Graz, Austria", "raw": null }, "geometry": { "type": "Point", "coordinates": [ 15.463336301067704, 47.059183397420796 ] } },
 { "type": "Feature", "properties": { "date": null, "time": null, "description": "Bowdoin College", "place": "Bowdoin College, Brunswick, ME, USA", "raw": null }, "geometry": { "type": "Point", "coordinates": [ -69.961774245472824, 43.907503499135188 ] } },
-{ "type": "Feature", "properties": { "date": null, "time": null, "description": "University of Alaska Southeast", "place": "11066 Auke Lake Way, Juneau, AK 99801, USA", "raw": null }, "geometry": { "type": "Point", "coordinates": [ -134.6364648023131, 58.383555097614931 ] } }
+{ "type": "Feature", "properties": { "date": null, "time": null, "description": "University of Alaska Southeast", "place": "11066 Auke Lake Way, Juneau, AK 99801, USA", "raw": null }, "geometry": { "type": "Point", "coordinates": [ -134.6364648023131, 58.383555097614931 ] } },
+{ "type": "Feature", "properties": { "date": null, "time": null, "description": "Emory University", "place": "Emory University, Atlanta, GA, USA", "raw": null }, "geometry": { "type": "Point", "coordinates": [ -84.330775312594611, 33.799884149741139 ] } },
+{ "type": "Feature", "properties": { "date": null, "time": null, "description": "Columbia University", "place": "Columbia University, New York, NY, USA", "raw": null }, "geometry": { "type": "Point", "coordinates": [ -73.943689710960967, 40.841983597296135 ] } },
+{ "type": "Feature", "properties": { "date": null, "time": null, "description": "University of Côte d'Azur", "place": "University of Côte d'Azur, Nice, France", "raw": null }, "geometry": { "type": "Point", "coordinates": [ 7.26608000302562, 43.703129998130677 ] } }
 ]
 }
