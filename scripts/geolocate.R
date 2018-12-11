@@ -5,7 +5,7 @@ library("readr")
 
 cat("Loading data\n")
 dataFile <- here::here("data/paywallthemovie-screenings.csv")
-screenings <- read_csv(dataFile)
+screenings <- read_csv(dataFile, col_types = "Dtccc")
 summary(screenings)
 
 # http://www.storybench.org/geocode-csv-addresses-r/
@@ -54,6 +54,7 @@ cat("Converting to geocoordinates\n")
 library("sf")
 screenings_geo <- st_as_sf(screenings, coords = c("x", "y"), crs = 3395)
 screenings_latlon <- st_transform(screenings_geo, crs = 4326)
+screenings_latlon$time <- as.character(screenings_latlon$time)
 
 cat("Save data as GeoJSON (removing the old file beforehand)\n")
 unlink("public/screenings.json")
