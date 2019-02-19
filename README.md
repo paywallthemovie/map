@@ -26,7 +26,7 @@ Manual changes:
 1. commit state
 1. geocode information in column `place` into column `location` save to GeoJSON file `public/screenings.json` with the R script `scripts/geolocate.R`
 
-## Update map data
+## Update map data (local R)
 
 The main data file is a CSV file in `data`, but the map is based on a structured document with geolocation coordinates for each screening.
 The [OpenCage](https://opencagedata.com) API is used for forward geocoding the text place names.
@@ -40,12 +40,20 @@ Run the following command:
 Rscript scripts/geolocate.R
 ```
 
+## Update map data (container)
+
+Run
+
+```
+make geolocate_container
+```
+
 ## Map
 
 Full page [Leaflet](https://leafletjs.com/) map with CSS and JS from CDNs.
 Map has a custom markers using the Open Access logo with the movie CI color.
 
-## Develop
+### Develop
 
 Use a local webserver to resolve the paths:
 

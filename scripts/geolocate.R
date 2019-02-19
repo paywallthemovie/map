@@ -2,6 +2,8 @@
 
 library("here")
 library("readr")
+library("pbapply")
+pbapply::pboptions(type = "timer")
 
 cat("Loading data\n")
 dataFile <- here::here("data/paywallthemovie-screenings.csv")
@@ -26,7 +28,7 @@ cat("Geocoding addresses\n")
 library("opencage")
 # single test
 #opencage_forward(placename = screenings$place[[1]], limit = 1)$results[1,]
-coords <- lapply(screenings$place, function(place) {
+coords <- pbapply::pblapply(screenings$place, function(place) {
   result <- opencage_forward(placename = place, limit = 1)$results[1,]
   if(is.null(result)) {
     cat("Error geocoding place: ", place, "\n")
@@ -34,10 +36,10 @@ coords <- lapply(screenings$place, function(place) {
   }
   #browser()
   found <- toString(result$formatted)
-  tibble::data_frame(place = place,
-                     found = found,
-                     x = as.numeric(levels(result$annotations.Mercator.x)),
-                     y = as.numeric(levels(result$annotations.Mercator.y)))
+  tibble::tibble(place = place,
+                 found = found,
+                 x = as.numeric(levels(result$annotations.Mercator.x)),
+                 y = as.numeric(levels(result$annotations.Mercator.y)))
   #cat("Geocoded: ", place, " >>> ", toString(result$formatted), "\n")
 })
 coords <- do.call(rbind, coords)
@@ -52,8 +54,8 @@ dim(screenings)
 
 cat("Converting to geocoordinates\n")
 library("sf")
-screenings_geo <- st_as_sf(screenings, coords = c("x", "y"), crs = 3395)
-screenings_latlon <- st_transform(screenings_geo, crs = 4326)
+screenings_geo <- sf::st_as_sf(screenings, coords = c("x", "y"), crs = 3395)
+screenings_latlon <- sf::st_transform(screenings_geo, crs = 4326)
 screenings_latlon$time <- as.character(screenings_latlon$time)
 
 cat("Save data as GeoJSON (removing the old file beforehand)\n")
