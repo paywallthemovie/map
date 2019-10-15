@@ -38,6 +38,8 @@ coords <- pbapply::pblapply(screenings$place, function(place) {
   found <- toString(result$formatted)
   tibble::tibble(place = place,
                  found = found,
+                 country = levels(result$components.country_code),
+                 continent = levels(result$components.continent),
                  x = as.numeric(levels(result$annotations.Mercator.x)),
                  y = as.numeric(levels(result$annotations.Mercator.y)))
   #cat("Geocoded: ", place, " >>> ", toString(result$formatted), "\n")
@@ -49,6 +51,8 @@ coords <- do.call(rbind, coords)
 
 screenings$x <- coords$x
 screenings$y <- coords$y
+screenings$country <- coords$country
+screenings$continent <- coords$continent
 head(screenings)
 dim(screenings)
 
@@ -64,30 +68,12 @@ sf::st_write(screenings_latlon, "public/screenings.json", driver = "GeoJSON")
 
 cat("Save stats to file\n")
 library("jsonlite")
-write(toJSON(list(screenings = nrow(screenings), lastUpdate = Sys.time()),
+write(toJSON(list(screenings = nrow(screenings),
+                  lastUpdate = Sys.time(),
+                  countries = length(unique(screenings$country)),
+                  continents = length(unique(screenings$continent))),
              auto_unbox = TRUE,
              pretty = TRUE),
       "public/statistics.json")
 
 cat("Done\n")
-
-#########################
-# interactive maps with R
-
-# devtools::install_github("r-spatial/mapview", ref = "develop") because of https://github.com/r-spatial/mapview/issues/177
-#library("mapview")
-#mapview::mapView(screenings_latlon)
-
-# <- makeIcon(
-#  iconUrl = "oaicon.png",
-#  iconWidth = 25, iconHeight = 32,
-#  #iconAnchorX = 22, iconAnchorY = 94
-#)
-#
-#library("leaflet")
-#m <- leaflet(data = screenings_latlon) %>%
-#  addTiles() %>%
-#  addMarkers(popup = ~as.character(description),
-#             label = ~as.character(place),
-#             icon = oaIcon)
-#mapshot(m, 'map.html')

@@ -187,7 +187,7 @@
         var statistics = L.control({ position: 'bottomright' });
         statistics.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'statistics');
-            div.innerHTML = '<span id="statScreenings"></span> screenings | Last update: <span id="statLastUpdate"></span>';
+            div.innerHTML = '<span id="statScreenings"></span> screenings in <span id="statCountries"></span> countries across <span id="statContinents"></span> continents | Last update: <span id="statLastUpdate"></span>';
             return div;
         };
 
@@ -251,6 +251,8 @@
             if (xhr2.status === 200) {
                 let stats = JSON.parse(xhr2.responseText);
                 document.getElementById('statScreenings').innerHTML = stats.screenings;
+                document.getElementById('statCountries').innerHTML = stats.countries;
+                document.getElementById('statContinents').innerHTML = stats.continents;
                 document.getElementById('statLastUpdate').innerHTML = stats.lastUpdate;
             } else {
                 console.log("Status: " + xhr2.status);
